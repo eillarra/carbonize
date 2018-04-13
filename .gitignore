@@ -7,4 +7,9 @@ __pycache__
 .mypy_cache
 .vscode
 
+*.egg
+*.egg-info
 .coverage
+.pytest_cache
+.tox
+htmlcov

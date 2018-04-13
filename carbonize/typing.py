@@ -1,7 +1,28 @@
-from typing import NewType
+from typing import List, NamedTuple, NewType
 
 
-AirportCode = NewType('AirportCode', str)
 CarbonEmissions = NewType('CarbonEmissions', float)
-CountryCode = NewType('CountryCode', str)
+FuelKg = NewType('FuelKg', float)
 Km = NewType('Km', int)
+
+
+class Point(NamedTuple):
+    latitude: float
+    longitude: float
+
+
+class Aircraft(NamedTuple):
+    code: str
+    fuel_consumption: List[int]
+
+
+class Airport(NamedTuple):
+    code: str
+    country: str
+    city: str
+    latitude: float
+    longitude: float
+
+    @property
+    def point(self) -> Point:
+        return Point(self.latitude, self.longitude)

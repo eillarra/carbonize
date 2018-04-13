@@ -7,10 +7,12 @@ name = "pypi"
 python_version = "3.6"
 
 [packages]
-click = "*"
+"e1839a8" = {path = ".", editable = true}
 
 [dev-packages]
+coverage = "*"
 flake8 = "*"
 flake8-mypy = "*"
 pypdf2 = "*"
 requests = "*"
+tox = "*"
