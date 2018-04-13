@@ -20,7 +20,8 @@ def open_data_csv(filename: str):
 
 
 class AircraftCatalog:
-    DEFAULT = '332'  # AIRBUS
+    DEFAULT = '320'  # AIRBUS
+    DEFAULT_LONG_DISTANCE = '787'  # BOEING
 
     def __init__(self, *args, **kwargs):
         consumptions = {d[0]: d[1:] for d in open_data_csv('icao_fuel_consumption.csv')}

@@ -1,42 +1,39 @@
 from .catalogs import AircraftCatalog, AirportCatalog
 from .utils import great_circle
-from .typing import Airport, CarbonEmissions, Km
+from .typing import CarbonKg, FuelKg, Km, Route
 
 
-class Calculator:
-    distance: Km = None
-    emissions: CarbonEmissions = None
+class AviationCalculator:
+    DEFAULT_ROUTE = Route(25, 'Intra Europe', 80.89, 96.23)  # TODO
 
-    def __init__(self):
-        self.load_data()
-
-    def calculate(self, origin, destination) -> None:
-        raise NotImplemented
-
-
-class AviationCalculator(Calculator):
     """A carbon emissions calculator for aviation.
     """
-    def load_data(self) -> None:
+    def __init__(self, origin: str, destination: str, aircraft_code: str = AircraftCatalog.DEFAULT) -> None:
+        airports = AirportCatalog()
+        self.a, self.b = airports.get(origin), airports.get(destination)
         self.aircrafts = AircraftCatalog()
-        self.airports = AirportCatalog()
+        self.aircraft = self.aircrafts.get(aircraft_code)
 
-    def calculate_distance(self, a_airport: Airport, b_airport: Airport) -> Km:
+    @property
+    def distance(self) -> Km:
         """Given origin and destination Airports, the GCD is calculated and then corrected by a factor:
         - Less than 550 Km: +50 Km
         - Between 550 Km and 5500 Km: +100 Km
         - Above 5500 Km: + 125 Km
         """
-        km = great_circle(a_airport.point, b_airport.point)
+        km = great_circle(self.a.point, self.b.point)
 
         for correction_factor in [(5500, 125), (550, 100), (0, 50)]:
             if km > correction_factor[0]:
                 return km + correction_factor[1]
 
-    def calculate_emissions(self, distance: Km, aircraft: str) -> CarbonEmissions:
-        raise NotImplemented
+    @property
+    def fuel_consumption(self) -> FuelKg:
+        if self.distance > 5000:
+            return self.aircrafts.get_consumption(self.distance / 2, AircraftCatalog.DEFAULT_LONG_DISTANCE) * 2
+        return self.aircrafts.get_consumption(self.distance, self.aircraft.code)
 
-    def calculate(self, origin: str, destination: str, aircraft: str = AircraftCatalog.DEFAULT) -> None:
-        a_airport, b_airport = self.airports.get(origin), self.airports.get(destination)
-        self.distance = self.calculate_distance(a_airport, b_airport)
-        self.emissions = self.calculate_emissions(self.distance, aircraft)
+    @property
+    def emissions_pax(self) -> CarbonKg:
+        r = self.DEFAULT_ROUTE
+        return 3.16 * (self.fuel_consumption * r.pax_to_freight_factor) / (self.aircraft.y_seats * r.pax_load_factor)
