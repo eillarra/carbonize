@@ -4,10 +4,14 @@ from setuptools import setup
 setup(
     name='carbonize',
     version='0.0.1',
-    url='https://github.com/eillarra/carbonize',
     author='eillarra',
     author_email='eneko@illarra.com',
     license='MIT',
+    url='https://github.com/eillarra/carbonize',
+    project_urls={
+        'Code': 'https://github.com/eillarra/carbonize',
+        'Issues': 'https://github.com/eillarra/carbonize/issues',
+    },
     description='Carbon Emissions calculator.',
     long_description=open('README.rst').read(),
     keywords='calculator co2 carbon greenhouse emissions footprint',
