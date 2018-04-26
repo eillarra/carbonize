@@ -1,0 +1,14 @@
+language: python
+
+python:
+    - "3.6"
+
+install:
+    - pip install --upgrade pip && pip install pipenv coveralls
+    - pipenv install --deploy --system
+
+script:
+    - coverage run --source=carbonize -m unittest discover
+
+after_success:
+    - coveralls

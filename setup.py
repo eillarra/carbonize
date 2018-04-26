@@ -1,4 +1,9 @@
+from os import path
 from setuptools import setup
+
+
+with open(path.join(path.abspath(path.dirname(__file__)), 'README.md'), encoding='utf-8') as f:
+    long_description = f.read()
 
 
 setup(
@@ -13,7 +18,7 @@ setup(
         'Issues': 'https://github.com/eillarra/carbonize/issues',
     },
     description='Carbon Emissions calculator.',
-    long_description=open('README.rst').read(),
+    long_description=long_description,
     keywords='calculator co2 carbon greenhouse emissions footprint',
     classifiers=[
         'Development Status :: 1 - Planning',
