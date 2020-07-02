@@ -1,7 +1,7 @@
 import unittest
 
 from carbonize.catalogs import AircraftCatalog, AirportCatalog
-from carbonize.typing import Aircraft, Airport
+from carbonize.types import Aircraft, Airport
 
 
 class TestAircraftCatalog(unittest.TestCase):
@@ -21,7 +21,9 @@ class TestAircraftCatalog(unittest.TestCase):
     def test_get_consumption(self):
         idx = 3
         aircraft = self._catalog.get(AircraftCatalog.DEFAULT)
-        consumption = self._catalog.get_consumption(self._catalog.consumption_ranges[idx], AircraftCatalog.DEFAULT)
+        consumption = self._catalog.get_consumption(
+            self._catalog.consumption_ranges[idx], AircraftCatalog.DEFAULT
+        )
         self.assertAlmostEqual(consumption, aircraft.fuel_consumption[idx])
 
 
@@ -31,17 +33,17 @@ class TestAirportCatalog(unittest.TestCase):
         self._catalog = AirportCatalog()
 
     def test_get(self):
-        airport = self._catalog.get('BRU')
-        self.assertEqual(airport.code, 'BRU')
-        self.assertEqual(airport.city, 'Brussels')
+        airport = self._catalog.get("BRU")
+        self.assertEqual(airport.code, "BRU")
+        self.assertEqual(airport.city, "Brussels")
         self.assertIsInstance(airport, Airport)
 
         with self.assertRaises(ValueError):
-            self._catalog.get('000')
+            self._catalog.get("000")
 
     def test_find(self):
-        self.assertEqual(self._catalog.find('BE').code, 'ANR')
-        self.assertEqual(self._catalog.find('BE', 'Brussels').code, 'BRU')
+        self.assertEqual(self._catalog.find("BE").code, "ANR")
+        self.assertEqual(self._catalog.find("BE", "Brussels").code, "BRU")
 
         with self.assertRaises(ValueError):
-            self._catalog.find('Milliways')
+            self._catalog.find("Milliways")

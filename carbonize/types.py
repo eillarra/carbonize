@@ -1,9 +1,9 @@
-from typing import List, NamedTuple, NewType
+from typing import List, NamedTuple, NewType, Optional
 
 
-CarbonKg = NewType('CarbonKg', float)
-FuelKg = NewType('FuelKg', float)
-Km = NewType('Km', int)
+CarbonKg = NewType("CarbonKg", float)  # CO2e
+FuelKg = NewType("FuelKg", float)
+Km = NewType("Km", float)
 
 
 class Point(NamedTuple):
@@ -34,3 +34,9 @@ class Route(NamedTuple):
     name: str
     pax_load_factor: float
     pax_to_freight_factor: float
+
+
+class Step(NamedTuple):
+    distance: Km
+    emissions: CarbonKg
+    fuel_consumption: Optional[FuelKg] = None

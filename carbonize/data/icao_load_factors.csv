@@ -1,41 +1,38 @@
 #,Route group,Passenger load factor,Passenger to freight factor
-1,Africa - Asia/Pacific,72.90,83.90
-2,Africa - Middle East,71.10,83.09
-3,Africa - North America,77.28,90.74
-4,Africa & Middle East - Central America/Caribbean,79.21,84.41
-5,Africa & Middle East - South America,60.20,84.41
-6,Central America/Caribbean - Europe,83.00,86.96
-7,Central America/Caribbean - North America,81.05,92.96
-8,Central America/Caribbean - South America,77.10,89.68
-9,Central Asia - Europe,82.08,63.49
-10,Central Asia - Middle East,76.40,81.26
-11,Central Asia - North America,82.85,62.28
-12,Central Asia & South West Asia - North Asia,73.50,79.99
-13,Central Asia & South West Asia - Pacific South East Asia,76.69,80.65
-14,Europe - Middle East,74.38,77.17
-15,Europe - North Africa,75.08,82.16
-16,Europe - North America,82.16,79.63
-17,Europe - North Asia,80.50,63.49
-18,Europe - Pacific South East Asia,79.50,63.49
-19,Europe - South America,82.20,77.10
-20,Europe - South West Asia,81.10,63.49
-21,Europe - Sub Saharan Africa,76.00,82.16
-22,Intra Africa,60.35,84.41
-23,Intra Central America/Caribbean,66.92,94.90
-24,Intra Central Asia & South West Asia,75.60,79.99
-25,Intra Europe,80.89,96.23
-26,Intra Middle East,71.13,84.41
-27,Intra North America,81.78,93.34
-28,Intra North Asia,76.50,79.99
-29,Intra Pacific South East Asia,76.05,79.99
-30,Intra South America,77.40,82.64
-31,Latin America/Caribbean - Central Asia,76.10,84.41
-32,Latin America/Caribbean - North Asia & Pacific South East Asia,72.50,84.63
-33,Middle East - North America,77.91,79.56
-34,Middle East - North Asia & Pacific South East Asia,77.50,81.26
-35,Middle East - South West Asia,77.90,81.26
-36,North America - North Asia,80.44,66.34
-37,North America - Pacific South East Asia,77.50,84.44
-38,North America - South America,79.66,77.50
-39,North America - South West Asia,80.61,62.28
-40,North Asia - Pacific South East Asia,77.58,79.99
+1,Africa - Asia/Pacific,73.7,83.82
+2,Africa - Middle East,74.1,82.92
+3,Africa - North America,77.1,91.11
+4,Africa & Middle East - Central America/Caribbean,77.9,84.03
+5,Africa & Middle East - South America,65.0,83.97
+6,Central America/Caribbean - Europe,81.7,86.57
+7,Central America/Caribbean - North America,80.7,93.17
+8,Central America/Caribbean - South America,79.7,89.42
+9,Central/South West Asia - Europe,81.5,63.43
+10,Central/South West Asia - Latin America/Caribbean,80.3,84.45
+11,Central/South West Asia - Middle East,78.9,81.18
+12,Central/South West Asia - North America,83.3,62.38
+13,Central/South West Asia - North Asia,71.2,79.47
+14,Central/South West Asia - Pacific South East Asia,74.8,80.12
+15,Europe - Middle East,74.5,77.19
+16,Europe - North Africa,73.6,81.99
+17,Europe - North America,83.1,79.96
+18,Europe - North Asia,80.0,63.43
+19,Europe - Pacific South East Asia,80.2,63.43
+20,Europe - South America,84.9,76.69
+21,Europe - Sub Saharan Africa,78.4,81.99
+22,Intra Africa,66.1,84.32
+23,Intra Central America/Caribbean,67.7,96.09
+24,Intra Central/South West Asia,69.8,79.47
+25,Intra Europe,82.3,96.12
+26,Intra Middle East,70.2,84.56
+27,Intra North America,79.1,93.35
+28,Intra North Asia,75.3,79.47
+29,Intra Pacific South East Asia,77.8,79.47
+30,Intra South America,77.1,82.66
+31,Latin America/Caribbean - North Asia & Pacific South East Asia,72.9,84.67
+32,Middle East - North America,83.9,79.89
+33,Middle East - North Asia & Pacific South East Asia,76.5,81.18
+34,North America - North Asia,82.3,66.44
+35,North America - Pacific South East Asia,80.9,84.57
+36,North America - South America,82.6,77.27
+37,North Asia - Pacific South East Asia,75.3,79.47

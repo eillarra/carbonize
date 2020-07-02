@@ -4,16 +4,17 @@ verify_ssl = true
 name = "pypi"
 
 [requires]
-python_version = "3.6"
+python_version = "3.8"
 
 [packages]
-"e1839a8" = {path = ".", editable = true}
+carbonize = {editable = true, path = "."}
 
 [dev-packages]
-coverage = "*"
+black = "==19.10b0"
 flake8 = "*"
 flake8-mypy = "*"
 pypdf2 = "*"
+pytest = "*"
+pytest-cov = "*"
 requests = "*"
-tox = "*"
 twine = "*"
