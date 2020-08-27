@@ -4,7 +4,7 @@ from carbonize.calculators import FlightCalculator
 from carbonize.utils import great_circle
 
 
-class TestAviationCalculator(unittest.TestCase):
+class TestFlightCalculator(unittest.TestCase):
     """The values should be approximate to the results we get at:
     https://www.icao.int/environmental-protection/CarbonOffset/Pages/default.aspx"""
 

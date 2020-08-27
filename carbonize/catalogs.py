@@ -51,6 +51,11 @@ class AircraftCatalog:
 
     def get_consumption(self, distance: Km, aircraft_code: str) -> FuelKg:
         idx = bisect.bisect_left(self.consumption_ranges, distance)
+
+        # Check if went out of range
+        if not self.aircrafts_dict[aircraft_code].fuel_consumption[idx]:
+            aircraft_code = self.DEFAULT_LONG_DISTANCE
+
         return FuelKg(
             self.aircrafts_dict[aircraft_code].fuel_consumption[idx]
             / self.consumption_ranges[idx]

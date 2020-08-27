@@ -24,9 +24,9 @@ fp.emissions
 
 [codecov]: https://codecov.io/gh/eillarra/carbonize
 [codecov-badge]: https://codecov.io/gh/eillarra/carbonize/branch/master/graph/badge.svg
-[github-mypy]: https://github.com/eillarra/carbonize/actions?query=workflow%3A%22mypy%22
+[github-mypy]: https://github.com/eillarra/carbonize/actions?query=workflow%3Amypy
 [github-mypy-badge]: https://github.com/eillarra/carbonize/workflows/mypy/badge.svg
-[github-tests]: https://github.com/eillarra/carbonize/actions?query=workflow%3A%22tests%22
+[github-tests]: https://github.com/eillarra/carbonize/actions?query=workflow%3Atests
 [github-tests-badge]: https://github.com/eillarra/carbonize/workflows/tests/badge.svg
 [license-badge]: https://img.shields.io/badge/license-MIT-blue.svg
 [pypi]: https://pypi.org/project/carbonize/

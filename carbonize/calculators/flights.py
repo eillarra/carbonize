@@ -1,10 +1,8 @@
-from .catalogs import AircraftCatalog, AirportCatalog
-from .utils import great_circle
-from .types import CarbonKg, FuelKg, Km, Route, Step
+from carbonize.catalogs import AircraftCatalog, AirportCatalog
+from carbonize.utils import great_circle
+from carbonize.types import CarbonKg, FuelKg, Km, Route, Step
 
-
-class Calculator:
-    pass
+from .base import Calculator
 
 
 class FlightCalculator(Calculator):
@@ -61,15 +59,3 @@ class FlightCalculator(Calculator):
             * (self.fuel_consumption * r.pax_to_freight_factor)
             / (self.aircraft.y_seats * r.pax_load_factor)
         )
-
-
-class TrainCalculator(Calculator):
-    """A carbon emissions calculator for railway transport.
-    Based on UK GOV carbon conversion factors (kg/km):
-    https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2019
-    """
-
-    CO2E_PER_KM = 0.04115
-
-    def calculate(self, *, distance: Km) -> Step:
-        return Step(distance, CarbonKg(distance * self.CO2E_PER_KM))
