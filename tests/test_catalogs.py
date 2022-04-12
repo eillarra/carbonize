@@ -1,38 +1,38 @@
-import unittest
+import pytest
 
 from carbonize.catalogs import AircraftCatalog, AirportCatalog
 from carbonize.types import Aircraft, Airport
 
 
-class TestAircraftCatalog(unittest.TestCase):
-    @classmethod
-    def setUpClass(self):
-        self._catalog = AircraftCatalog()
+class TestAircraftCatalog:
+    @pytest.fixture(autouse=True)
+    def setup_data(self):
+        self.catalog = AircraftCatalog()
 
     def test_get(self):
-        aircraft = self._catalog.get(AircraftCatalog.DEFAULT)
-        self.assertEqual(aircraft.code, AircraftCatalog.DEFAULT)
-        self.assertIsInstance(aircraft.fuel_consumption[0], int)
-        self.assertIsInstance(aircraft, Aircraft)
+        aircraft = self.catalog.get(AircraftCatalog.DEFAULT)
+        assert aircraft.code == AircraftCatalog.DEFAULT
+        assert isinstance(aircraft.fuel_consumption[0], int)
+        assert isinstance(aircraft, Aircraft)
 
 
-class TestAirportCatalog(unittest.TestCase):
-    @classmethod
-    def setUpClass(self):
-        self._catalog = AirportCatalog()
+class TestAirportCatalog:
+    @pytest.fixture(autouse=True)
+    def setup_data(self):
+        self.catalog = AirportCatalog()
 
     def test_get(self):
-        airport = self._catalog.get("BRU")
-        self.assertEqual(airport.code, "BRU")
-        self.assertEqual(airport.city, "Brussels")
-        self.assertIsInstance(airport, Airport)
+        airport = self.catalog.get("BRU")
+        assert airport.code == "BRU"
+        assert airport.city == "Brussels"
+        assert isinstance(airport, Airport)
 
-        with self.assertRaises(ValueError):
-            self._catalog.get("000")
+        with pytest.raises(ValueError):
+            self.catalog.get("000")
 
     def test_find(self):
-        self.assertEqual(self._catalog.find("BE").code, "ANR")
-        self.assertEqual(self._catalog.find("BE", "Brussels").code, "BRU")
+        assert self.catalog.find("BE").code == "ANR"
+        assert self.catalog.find("BE", "Brussels").code == "BRU"
 
-        with self.assertRaises(ValueError):
-            self._catalog.find("Milliways")
+        with pytest.raises(ValueError):
+            self.catalog.find("Milliways")

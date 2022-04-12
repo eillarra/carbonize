@@ -26,8 +26,8 @@ Running tests
 
     $ pytest --cov=carbonize --cov-report=term
 
-Updating the general data
--------------------------
+Updating the underlying data
+----------------------------
 
 The Pickle files in the data folder can be updated using the `bin/update_data.py` file.
 

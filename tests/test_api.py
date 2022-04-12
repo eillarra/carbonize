@@ -1,22 +1,20 @@
-import unittest
+import pytest
 
 from carbonize.api import Footprint
 
 
-class TestFootprint(unittest.TestCase):
+class TestFootprint:
     """The values should be approximate to the results we get at:
     https://www.icao.int/environmental-protection/CarbonOffset/Pages/default.aspx"""
 
-    @classmethod
-    def setUpClass(self):
-        self.fp = Footprint()
-
     def test_flight(self):
-        self.fp.add_flight(a="BRU", b="BCN")
-        self.assertEqual(len(self.fp.steps), 1)
-        self.assertAlmostEqual(self.fp.emissions, 116, delta=5)
+        fp = Footprint()
+        fp.add_flight(a="BRU", b="BCN")
+        assert len(fp.steps) == 1
+        assert fp.emissions == pytest.approx(116, rel=0.025)
 
     def test_flight_two_way(self):
-        self.fp.add_flight(a="BRU", b="BCN", two_way=True)
-        self.assertEqual(len(self.fp.steps), 3)
-        self.assertAlmostEqual(self.fp.emissions, 116 * 3, delta=10)
+        fp = Footprint()
+        fp.add_flight(a="BRU", b="BCN", two_way=True)
+        assert len(fp.steps) == 2
+        assert fp.emissions == pytest.approx(116 * 2, rel=0.025)
