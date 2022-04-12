@@ -7,14 +7,16 @@ class TestFootprint:
     """The values should be approximate to the results we get at:
     https://www.icao.int/environmental-protection/CarbonOffset/Pages/default.aspx"""
 
-    def test_flight(self):
+    def test_flight_and_train(self):
         fp = Footprint()
         fp.add_flight(a="BRU", b="BCN")
-        assert len(fp.steps) == 1
-        assert fp.emissions == pytest.approx(116, rel=0.025)
+        fp.add_train(distance=50)
+        assert len(fp.steps) == 2
+        assert fp.co2e == pytest.approx(116, rel=0.025)
 
-    def test_flight_two_way(self):
+    def test_two_ways(self):
         fp = Footprint()
         fp.add_flight(a="BRU", b="BCN", two_way=True)
-        assert len(fp.steps) == 2
-        assert fp.emissions == pytest.approx(116 * 2, rel=0.025)
+        fp.add_train(distance=50, two_way=True)
+        assert len(fp.steps) == 4
+        assert fp.co2e == pytest.approx(116 * 2, rel=0.025)

@@ -11,12 +11,14 @@ class Flight(Calculator):
     DEFAULT_AIRCRAFT = AircraftCatalog.DEFAULT
     DEFAULT_ROUTE = Route(25, "Intra Europe", 80.89, 96.23)  # TODO
 
-    def __init__(self, *, a: str, b: str, aircraft: str = AircraftCatalog.DEFAULT):
-        airports = AirportCatalog()
-        self.a, self.b = airports.get(a), airports.get(b)
-        self.aircraft = AircraftCatalog().get(aircraft)
+    airports = AirportCatalog()
+    aircrafts = AircraftCatalog()
 
-    def __repr__(self) -> str:
+    def __init__(self, *, a: str, b: str, aircraft: str = AircraftCatalog.DEFAULT) -> None:
+        self.a, self.b = self.airports.get(a), self.airports.get(b)
+        self.aircraft = self.aircrafts.get(aircraft)
+
+    def __repr__(self) -> str:  # pragma: no cover
         return f"Flight({self.a.code}-{self.b.code}, {self.distance} km)"
 
     @property

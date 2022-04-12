@@ -18,7 +18,7 @@ from carbonize import Footprint
 fp = Footprint()
 fp.add_flight(a="BRU", b="BIO", two_way=True)
 fp.add_train(distance=100)
-fp.emissions  # in CO2e (kg)
+fp.co2e  # in kg
 ```
 
 Running tests

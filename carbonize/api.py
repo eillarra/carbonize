@@ -5,6 +5,10 @@ from carbonize.types import CarbonKg, Km, Step
 
 
 class Footprint:
+    """The footprint is an object that stores different emission steps.
+    Each step is linked to a CO2e calculator.
+    """
+
     def __init__(self):
         self.steps: List[Step] = []
 
@@ -21,5 +25,5 @@ class Footprint:
             self.add_train(distance=distance)
 
     @property
-    def emissions(self) -> CarbonKg:
+    def co2e(self) -> CarbonKg:
         return CarbonKg(sum([step.co2e for step in self.steps]))

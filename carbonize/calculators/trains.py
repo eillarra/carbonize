@@ -14,7 +14,7 @@ class Train(Calculator):
     def __init__(self, *, distance: Km) -> None:
         self.distance = distance
 
-    def __repr__(self) -> str:
+    def __repr__(self) -> str:  # pragma: no cover
         return f"Train({self.distance} km)"
 
     def get_step(self) -> Step:

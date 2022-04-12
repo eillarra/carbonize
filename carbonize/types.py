@@ -2,7 +2,7 @@ import bisect
 
 from typing import List, NamedTuple, NewType, Optional, TYPE_CHECKING
 
-if TYPE_CHECKING:
+if TYPE_CHECKING:  # pragma: no cover
     from carbonize.calculators.base import Calculator
 
 

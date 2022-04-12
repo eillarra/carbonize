@@ -15,6 +15,9 @@ class TestAircraftCatalog:
         assert isinstance(aircraft.fuel_consumption[0], int)
         assert isinstance(aircraft, Aircraft)
 
+        with pytest.raises(ValueError):
+            self.catalog.get("Wright")
+
 
 class TestAirportCatalog:
     @pytest.fixture(autouse=True)
