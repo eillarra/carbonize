@@ -9,22 +9,11 @@ class TestAircraftCatalog(unittest.TestCase):
     def setUpClass(self):
         self._catalog = AircraftCatalog()
 
-    def test_data(self):
-        self.assertEqual(len(self._catalog.consumption_ranges), 20)
-
     def test_get(self):
         aircraft = self._catalog.get(AircraftCatalog.DEFAULT)
         self.assertEqual(aircraft.code, AircraftCatalog.DEFAULT)
         self.assertIsInstance(aircraft.fuel_consumption[0], int)
         self.assertIsInstance(aircraft, Aircraft)
-
-    def test_get_consumption(self):
-        idx = 3
-        aircraft = self._catalog.get(AircraftCatalog.DEFAULT)
-        consumption = self._catalog.get_consumption(
-            self._catalog.consumption_ranges[idx], AircraftCatalog.DEFAULT
-        )
-        self.assertAlmostEqual(consumption, aircraft.fuel_consumption[idx])
 
 
 class TestAirportCatalog(unittest.TestCase):

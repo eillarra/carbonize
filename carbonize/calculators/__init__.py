@@ -1,2 +1,2 @@
-from .flights import FlightCalculator  # noqa
-from .trains import TrainCalculator  # noqa
+from .flights import Flight  # noqa
+from .trains import Train  # noqa

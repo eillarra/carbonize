@@ -13,7 +13,6 @@ __pycache__
 .pytest_cache
 .tox
 build
-data
 dist
 htmlcov
 Pipfile.lock

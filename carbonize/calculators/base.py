@@ -1,2 +1,6 @@
+from carbonize.types import Step
+
+
 class Calculator:
-    pass
+    def get_step(self) -> Step:
+        raise NotImplementedError

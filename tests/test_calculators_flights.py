@@ -1,17 +1,17 @@
 import unittest
 
-from carbonize.calculators import FlightCalculator
+from carbonize.calculators import Flight
 from carbonize.utils import great_circle
 
 
-class TestFlightCalculator(unittest.TestCase):
+class TestFlight(unittest.TestCase):
     """The values should be approximate to the results we get at:
     https://www.icao.int/environmental-protection/CarbonOffset/Pages/default.aspx"""
 
     @classmethod
     def setUpClass(self):
-        self._c = FlightCalculator()
-        self.step = self._c.calculate(a="BRU", b="BCN")
+        self._c = Flight(a="BRU", b="BCN")
+        self.step = self._c.get_step()
 
     def test_distance(self):
         gc = great_circle(self._c.a.point, self._c.b.point)
@@ -22,4 +22,4 @@ class TestFlightCalculator(unittest.TestCase):
         self.assertAlmostEqual(self.step.fuel_consumption, 5412, delta=150)
 
     def test_emissions_pax(self):
-        self.assertAlmostEqual(self.step.emissions, 116, delta=5)
+        self.assertAlmostEqual(self.step.co2e, 116, delta=5)

@@ -5,21 +5,26 @@ from carbonize.types import CarbonKg, FuelKg, Km, Route, Step
 from .base import Calculator
 
 
-class FlightCalculator(Calculator):
-    """A carbon emissions calculator for flights.
-    """
+class Flight(Calculator):
+    """A carbon emissions calculator for flights."""
 
-    aircrafts = AircraftCatalog()
-    airports = AirportCatalog()
-
+    DEFAULT_AIRCRAFT = AircraftCatalog.DEFAULT
     DEFAULT_ROUTE = Route(25, "Intra Europe", 80.89, 96.23)  # TODO
 
-    def calculate(
-        self, *, a: str, b: str, aircraft: str = AircraftCatalog.DEFAULT
-    ) -> Step:
-        self.a, self.b = self.airports.get(a), self.airports.get(b)
-        self.aircraft = self.aircrafts.get(aircraft)
-        return Step(self.distance, self.emissions_pax, self.fuel_consumption)
+    def __init__(self, *, a: str, b: str, aircraft: str = AircraftCatalog.DEFAULT):
+        airports = AirportCatalog()
+        self.a, self.b = airports.get(a), airports.get(b)
+        self.aircraft = AircraftCatalog().get(aircraft)
+
+    def __repr__(self) -> str:
+        return f"Flight({self.a.code}-{self.b.code}, {self.distance} km)"
+
+    @property
+    def co2e_pax(self) -> CarbonKg:
+        r = self.DEFAULT_ROUTE
+        return CarbonKg(
+            3.16 * (self.fuel_consumption * r.pax_to_freight_factor) / (self.aircraft.y_seats * r.pax_load_factor)
+        )
 
     @property
     def distance(self) -> Km:
@@ -28,6 +33,7 @@ class FlightCalculator(Calculator):
         - Between 550 Km and 5500 Km: +100 Km
         - Above 5500 Km: + 125 Km
         """
+
         km = great_circle(self.a.point, self.b.point)
         distance: Km = km
 
@@ -40,22 +46,12 @@ class FlightCalculator(Calculator):
 
     @property
     def fuel_consumption(self) -> FuelKg:
-        """For flights longer than 5000 Km, we are assuming a stop will be needed.
-        """
-        if self.distance > 5000:
-            return FuelKg(
-                self.aircrafts.get_consumption(
-                    Km(self.distance / 2), AircraftCatalog.DEFAULT_LONG_DISTANCE
-                )
-                * 2
-            )
-        return self.aircrafts.get_consumption(self.distance, self.aircraft.code)
+        """For flights longer than 5000 Km, we are assuming a stop will be needed."""
 
-    @property
-    def emissions_pax(self) -> CarbonKg:
-        r = self.DEFAULT_ROUTE
-        return CarbonKg(
-            3.16
-            * (self.fuel_consumption * r.pax_to_freight_factor)
-            / (self.aircraft.y_seats * r.pax_load_factor)
-        )
+        try:
+            return self.aircraft.get_consumption(self.distance)
+        except IndexError:
+            return FuelKg(self.aircraft.get_consumption(Km(self.distance / 2)) * 2)
+
+    def get_step(self) -> Step:
+        return Step(self.co2e_pax, self.distance, self.fuel_consumption, self)
