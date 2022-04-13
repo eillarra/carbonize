@@ -12,11 +12,11 @@ class Footprint:
     def __init__(self):
         self.steps: List[Step] = []
 
-    def add_flight(self, *, a: str, b: str, two_way: bool = False, aircaft: str = Flight.DEFAULT_AIRCRAFT) -> None:
-        self.steps.append(Flight(a=a, b=b).get_step())
+    def add_flight(self, *, a: str, b: str, two_way: bool = False, aircraft: str = Flight.DEFAULT_AIRCRAFT) -> None:
+        self.steps.append(Flight(a=a, b=b, aircraft=aircraft).get_step())
 
         if two_way:
-            self.add_flight(a=b, b=a, aircaft=aircaft)
+            self.add_flight(a=b, b=a, aircraft=aircraft)
 
     def add_train(self, *, distance: Km, two_way: bool = False) -> None:
         self.steps.append(Train(distance=distance).get_step())

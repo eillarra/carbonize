@@ -8,7 +8,7 @@ All notable changes to this project will be documented in this file.
 ## [0.1.0] - 2022-xxx
 
 ### Added
-- General API, introducing the Footprint class and Steps.
+- General API, introducing the `Footprint` class and steps.
 - New calculator for trains: `Train`.
 
 ### Changed

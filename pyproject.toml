@@ -2,5 +2,5 @@
 line-length = 120
 
 [tool.coverage.report]
-exclude_lines = ["pragma: no cover", "raise NotImplementedError"]
+exclude_lines = ["pragma: no cover", "raise NotImplementedError", "def __repr__"]
 show_missing = true
