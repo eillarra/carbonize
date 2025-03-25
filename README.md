@@ -9,8 +9,7 @@ Carbonize
 [![license-badge]](LICENSE)
 
 
-Basic usage
------------
+### Getting started 🛫
 
 ```python
 from carbonize import Footprint
@@ -21,15 +20,27 @@ fp.add_train(distance=100)
 fp.co2e  # in kg
 ```
 
-Running tests
--------------
-
-    $ pytest --cov=carbonize --cov-report=term
-
-Updating the underlying data
-----------------------------
+## Update the underlying data 📦
 
 The Pickle files in the data folder can be updated using the `bin/update_data.py` file.
+
+```bash
+poetry install --sync && python bin/update_data.py
+```
+
+### Run the tests 🧪
+
+```bash
+poetry run pytest --cov=carbonize --cov-report=term
+```
+
+### Style guide 📖
+
+Tab size is 4 spaces. Keep lines under 120 characters. Feeling iffy? Run `ruff` before you commit:
+
+```bash
+poetry run ruff format . && poetry run ruff check carbonize
+```
 
 
 [codecov]: https://codecov.io/gh/eillarra/carbonize

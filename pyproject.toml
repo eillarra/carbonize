@@ -1,6 +1,69 @@
-[tool.black]
-line-length = 120
+[project]
+name = "carbonize"
+version = "0.1.0"
+requires-python = ">=3.9"
+
+[tool.poetry]
+name = "carbonize"
+version = "0.1.0"
+license = "MIT"
+repository = "https://github.com/eillarra/carbonize"
+authors = ["Eneko Illarramendi <eneko@illarra.com>"]
+description = "A collection of carbon footprint calculators."
+readme = "README.md"
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Education",
+  "Intended Audience :: Other Audience",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+  "Typing :: Typed",
+]
+keywords = ["calculator", "co2", "co2e", "carbon", "greenhouse", "emissions", "footprint"]
+packages = [{include = "carbonize"}]
+include = ["carbonize/data/*.pkl", "carbonize/py.typed"]
+exclude = ["docs", "tests"]
+
+[tool.poetry.dependencies]
+python = ">=3.9,<4"
+
+[tool.poetry.group.dev.dependencies]
+mypy = "*"
+pypdf = "*"
+pytest = "*"
+pytest-cov = "*"
+requests = "*"
+ruff = "*"
+
+[tool.poetry.group.docs.dependencies]
+sphinx = "*"
+sphinx-rtd-theme = "*"
+sphinx-copybutton = "*"
+sphinx-tabs = "*"
 
 [tool.coverage.report]
-exclude_lines = ["pragma: no cover", "raise NotImplementedError", "def __repr__"]
+exclude_lines = ["pragma: no cover", "if TYPE_CHECKING:", "raise NotImplementedError", "def __repr__"]
 show_missing = true
+
+[tool.pytest.ini_options]
+addopts = "--cov=carbonize --cov-report=term"
+
+[tool.ruff]
+target-version = "py39"
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E", "F", "UP", "B", "SIM", "I", "D"]
+ignore = ["SIM105", "D203", "D213"]
+
+[tool.ruff.lint.isort]
+lines-after-imports = 2

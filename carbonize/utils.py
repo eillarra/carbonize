@@ -1,12 +1,23 @@
-from math import radians, cos, sin, sqrt, atan2
+"""Utility functions for the Carbonize package."""
 
-from .types import Point, Km
+from math import atan2, cos, radians, sin, sqrt
+
+from .type_definitions import Km, Point
 
 
 def great_circle(a: Point, b: Point) -> Km:
-    """Calculates the great circle distance between two points on Earth.
-    Source: https://github.com/geopy/geopy/blob/master/geopy/distance.py"""
+    """Calculate the great circle distance between two points on Earth.
 
+    Source: https://github.com/geopy/geopy/blob/master/geopy/distance.py
+
+    :param a: First point.
+    :param b: Second point.
+    :returns: The distance in kilometers.
+    """
+    if not isinstance(a, Point) or not isinstance(b, Point):
+        raise TypeError("Both arguments must be instances of Point")
+
+    earth_radius_km = 6371.009
     lat1, lng1, lat2, lng2 = map(radians, [a.latitude, a.longitude, b.latitude, b.longitude])
     sin_lat1, sin_lat2 = map(sin, [lat1, lat2])
     cos_lat1, cos_lat2 = map(cos, [lat1, lat2])
@@ -18,4 +29,4 @@ def great_circle(a: Point, b: Point) -> Km:
         sin_lat1 * sin_lat2 + cos_lat1 * cos_lat2 * cos_delta_lng,
     )
 
-    return Km(6371.009 * d)  # Radius of earth in kilometers is 6371
+    return Km(earth_radius_km * d)
