@@ -1,6 +1,11 @@
 .DS_Store
 ._*
 
+# Python package
+
+.python-version
+.venv
+
 __pycache__
 *.py[cod]
 *$py.class
@@ -11,8 +16,15 @@ __pycache__
 *.egg-info
 .coverage
 .pytest_cache
+.ruff_cache
 .tox
 build
 dist
 htmlcov
-Pipfile.lock
+test-reports
+
+# Docs
+
+docs/_build
+docs/_static
+docs/_templates

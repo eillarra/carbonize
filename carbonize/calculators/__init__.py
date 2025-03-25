@@ -1,2 +1,9 @@
-from .flights import Flight  # noqa
-from .trains import Train  # noqa
+"""Carbon emission calculators."""
+
+from .cars import Ride
+from .flights import Flight
+from .trains import Train
+from .webinars import HostedWebinar, Webinar
+
+
+__all__ = ["Ride", "Flight", "Train", "Webinar", "HostedWebinar"]
